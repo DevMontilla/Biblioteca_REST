@@ -10,40 +10,44 @@ class Server {
 
     this.paths = {
       auth:         '/api/auth',
-      buscar:       '/api/buscar',
-      catogerias:   '/api/categorias',
-      productos:    '/api/productos',
-      usuariosPath: '/api/usuarios'
+      books:        '/api/books',
+      genre:        '/api/genres',
+      reservation:  '/api/reservations',
+      search:       '/api/search',
+      usersPath:    '/api/users'
     }
 
     //DB connection
-    this.conectarDB()
+    this.connectDB()
 
     //Middlewares
     this.middlewares();
 
     //Routes
     this.routes();
+
+    //Cronjob
+
   }
 
-  async conectarDB() {
+  async connectDB() {
     await dbConnection()
   }
 
   middlewares() {
     //CORS
     this.app.use(cors());
-
     //Body parser
     this.app.use(express.json())
   }
 
   routes() {
     this.app.use(this.paths.auth, require('../routes/auth'))
-    this.app.use(this.paths.buscar, require('../routes/buscar'))
-    this.app.use(this.paths.catogerias, require('../routes/categorias'))
-    this.app.use(this.paths.productos, require('../routes/productos'))
-    this.app.use(this.paths.usuariosPath, require('../routes/usuarios'))
+    this.app.use(this.paths.books, require('../routes/books'))
+    this.app.use(this.paths.genre, require('../routes/genres'))
+    this.app.use(this.paths.search, require('../routes/search'))
+    this.app.use(this.paths.reservation, require('../routes/reservations'))
+    this.app.use(this.paths.usersPath, require('../routes/users'))
   }
 
   listen() {

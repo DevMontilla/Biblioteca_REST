@@ -1,43 +1,38 @@
-const { findById } = require("../models/role");
-const Role = require("../models/role");
-const Usuario = require("../models/usuario");
-const Categoria = require("../models/categoria");
-const Producto = require('../models/producto')
+const User = require("../models/user");
+const Book = require("../models/book");
+const Genre = require("../models/genre");
 
-const esRolValido = async (rol = "") => {
-  const existeRol = await Role.findOne({ rol });
-  if (!existeRol) {
-    throw new Error(`El rol ${rol} no existe`);
+const emailAlreadyExist = async (email = "") => {
+  const emailFound = await User.findOne({ email });
+  if (emailFound) {
+    throw new Error(`The email: ${email} is already exist`);
   }
 };
 
-const existeEmail = async (correo = "") => {
-  const existeEmail = await Usuario.findOne({ correo });
-
-  if (existeEmail) {
-    throw new Error(`El correo: ${correo} ya esta registrado`)
+const existBookById = async (id) => {
+  const book = await Book.findOne({ id });
+  if (!book) {
+    throw new Error(`The book id does not exist`);
   }
 };
 
-const existeUsuarioPorId = async (id) => {
-  const usuario = await Usuario.findById(id)
-  if(!usuario) {
-    throw new Error(`El id no existe`)
+const existGenreById = async (id) => {
+  const genre = await Genre.findOne({ id });
+  if (!genre) {
+    throw new Error(`The genre id does not exist`);
   }
-}
+};
 
-const existeCategoriaPorId = async(id)=>{
-  const categoria = await Categoria.findById(id)
-  if(!categoria) {
-    throw new Error(`El id no existe`)
+const existUserById = async (id) => {
+  const user = await User.findOne({ id });
+  if (!user) {
+    throw new Error(`The user id does not exist`);
   }
-}
+};
 
-const existeProductoPorId = async(id)=>{
-  const producto = await Producto.findById(id)
-  if(!producto) {
-    throw new Error(`El id no existe`)
-  }
-}
-
-module.exports = { esRolValido, existeEmail, existeUsuarioPorId, existeCategoriaPorId, existeProductoPorId };
+module.exports = {
+  emailAlreadyExist,
+  existBookById,
+  existGenreById,
+  existUserById
+};
