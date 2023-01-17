@@ -44,6 +44,10 @@ const createReservation = async (req, res = response) => {
     user: req.user._id,
   };
 
+  await data.books.map(async item=>{
+    await Book.findByIdAndUpdate(item, {isAvailable: false})
+  })
+
   const reservation = await new Reservation(data);
 
   await reservation.save();
@@ -84,5 +88,5 @@ module.exports = {
   getOnePendingReservationById,
   createReservation,
   updateReservation,
-  deleteReservation
+  deleteReservation,
 };
