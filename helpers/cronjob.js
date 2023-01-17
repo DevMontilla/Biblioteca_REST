@@ -3,7 +3,10 @@ const Reservation = require("../models/reservation");
 require("colors");
 
 const job = nodeCron.schedule(
-  "0 0 8 * * *",
+  // Run everyday at 8am
+  "0 0 8 * * *", 
+  // Run every second
+  // "* * */1 * * *", 
   async () => {
     await Reservation.find({
       returned: false,

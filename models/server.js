@@ -56,8 +56,8 @@ class Server {
   }
 
   listen() {
-    this.app.listen(this.port, () => {
-      console.log(`Server running on PORT = ${this.port}`.italic.blue);
+    this.app.listen(this.port || 8080, () => {
+      console.log(`Server running on PORT = ${this.port || 8080}`.italic.blue);
     });
   }
 }
