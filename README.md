@@ -17,7 +17,7 @@ Pueden leer la documentación completa de la API para cada uno de sus endpoints 
 
 ### Instrucciones para levantar el proyecto
 
-1. Clonar el repositorio _git clone https://documenter.getpostman.com/view/15415863/2s8ZDU6QVe_
+1. Clonar el repositorio _git clone https://github.com/DevMontilla/Biblioteca_REST.git_
 2. Instalar los paquetes de node _npm i_
 3. Crear un archivo .env y agregar las claves adjuntas en el mail de entrega necesarias para la conexión a la DB y la generación y lectura del token de sesión.
 4. Ubicarse sobre la carpeta del repositorio y levantar el proyecto _npm run start_
